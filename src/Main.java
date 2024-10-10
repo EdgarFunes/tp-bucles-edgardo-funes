@@ -2,9 +2,9 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        try{
-            int option;
-            do {
+        int option = 0;
+        do {
+            try{
                 option = Integer.parseInt(JOptionPane.showInputDialog(null, """
                     Ingrese el ejercicio que desea ejecutar:
                     0. Salir
@@ -26,11 +26,38 @@ public class Main {
                     default:
                         throw new Exception("Opcion no valida");
                 }
-            }while(option != 0);
-        }catch (Exception e){
-            System.out.println("Error: "+e.getMessage());
-        }
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Error: "+e.getMessage(),
+                        "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }while(option != 0);
 
     }
-    public static void ejercicio1(){}
+    public static void ejercicio1(){
+        int totalHoras = 0;
+        int[] horas = new int[4];
+        String[] actividades = {"estudiar", "hacer ejercicio", "leer", "tiempo libre"};
+        try{
+            for (int i = 0; i < actividades.length; i++) {
+                horas[i] = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese las horas que le dedica a "+actividades[i]));
+                if (horas[i] < 0) throw new Exception("No puede ingresar numeros negativos");
+                totalHoras += horas[i];
+                if(totalHoras > 24) throw new Exception("La cantidad de horas ingresadas superan las 24 horas del dia");
+            }
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Usted dedica " + totalHoras + " horas a sus actividades."
+            );
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error: "+e.getMessage(),
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
 }
