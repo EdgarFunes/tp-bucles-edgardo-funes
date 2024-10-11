@@ -10,8 +10,8 @@ public class Main {
                     0. Salir
                     1. Cálculo del tiempo dedicado a cada actividad
                     2. Cálculo de salarios semanales
-                    3.
-                    4.
+                    3. Control de inventario
+                    4. Registro de ventas diarias
                     5.
                     """));
 
@@ -23,6 +23,12 @@ public class Main {
                         break;
                     case 2:
                         ejercicio2();
+                        break;
+                    case 3:
+                        ejercicio3();
+                        break;
+                    case 4:
+                        ejercicio4();
                         break;
                     default:
                         throw new Exception("Opcion no valida");
@@ -84,6 +90,54 @@ public class Main {
         }
     }
     public static void ejercicio3(){
+        try{
+            int cantProductos = 0;
+            cantProductos = Integer.parseInt(JOptionPane.showInputDialog(
+                    null,
+                    "Ingrese la cantidad de productos que tiene."));
+            if (cantProductos < 0) throw new Exception("La cantidad no puede ser negativa");
+            int[] productos = new int[cantProductos];
+
+            for (int i = 0; i < productos.length; i++) {
+                productos[i] = Integer.parseInt(JOptionPane.showInputDialog(
+                        null,
+                        "Ingrese la cantidad del producto "+(i+1)));
+                if(productos[i] < 0) throw new Exception("La cantidad no puede ser negativa");
+                if(productos[i] >= 0 && productos[i] < 5) JOptionPane.showMessageDialog(null, "Es necesario realizar un pedido");
+            }
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error: "+e.getMessage(),
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+    public static void ejercicio4(){
+        int[] ventas = new int[7];
+        StringBuilder mensaje = new StringBuilder("Ventas de la semana\n");
+        int totalVentas = 0;
+        try{
+            for (int i = 0; i < ventas.length; i++) {
+                ventas[i] = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese las ventas del dia " + (i+1)));
+                if(ventas[i] < 0) throw new Exception("No pueden haber venras negativas");
+                mensaje.append("Día ").append(i + 1).append(": ").append(ventas[i]).append("\n");
+                totalVentas += ventas[i];
+            }
+            mensaje.append("Total de ventas: ").append(totalVentas);
+            JOptionPane.showMessageDialog(null, mensaje.toString());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error: "+e.getMessage(),
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+    public static void ejercicio5(){
         try{
 
         }catch(Exception e){
