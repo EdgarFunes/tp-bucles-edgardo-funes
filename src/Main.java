@@ -9,7 +9,7 @@ public class Main {
                     Ingrese el ejercicio que desea ejecutar:
                     0. Salir
                     1. Cálculo del tiempo dedicado a cada actividad
-                    2.
+                    2. Cálculo de salarios semanales
                     3.
                     4.
                     5.
@@ -22,6 +22,7 @@ public class Main {
                         ejercicio1();
                         break;
                     case 2:
+                        ejercicio2();
                         break;
                     default:
                         throw new Exception("Opcion no valida");
@@ -51,6 +52,40 @@ public class Main {
                     null,
                     "Usted dedica " + totalHoras + " horas a sus actividades."
             );
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error: "+e.getMessage(),
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+    public static void ejercicio2(){
+        try{
+            int cantidadEmpleados = Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese la cantidad de empleados"));
+            float tarifa = 15.0f;
+
+            for (int i = 0; i < cantidadEmpleados; i++) {
+                int horasTrabajadas = Integer.parseInt(JOptionPane.showInputDialog(
+                        null,
+                        "Ingrese la cantida de horas trabajadas del empleado " + (i+1)));
+                if(horasTrabajadas < 0 || horasTrabajadas > 168) throw new Exception("Datos ingrsados invalidos");
+                float salario = horasTrabajadas * tarifa;
+                JOptionPane.showMessageDialog(null, "El sueldo del empleado " + (i+1)+" es "+salario);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Error: "+e.getMessage(),
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+    public static void ejercicio3(){
+        try{
+
         }catch(Exception e){
             JOptionPane.showMessageDialog(
                     null,
