@@ -12,7 +12,7 @@ public class Main {
                     2. Cálculo de salarios semanales
                     3. Control de inventario
                     4. Registro de ventas diarias
-                    5.
+                    5. Cálculo de horas extras
                     """));
 
                 switch (option){
@@ -30,6 +30,8 @@ public class Main {
                     case 4:
                         ejercicio4();
                         break;
+                    case 5:
+                        ejercicio5();
                     default:
                         throw new Exception("Opcion no valida");
                 }
@@ -139,7 +141,22 @@ public class Main {
     }
     public static void ejercicio5(){
         try{
+            int cantidadEmpleados = 0;
+            int horasTrabajadas;
+            StringBuilder mensaje = new StringBuilder("Horas extras de empleados\n");
 
+            cantidadEmpleados = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de empleados"));
+
+            for (int i = 0; i < cantidadEmpleados; i++) {
+                horasTrabajadas = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese las horas trabajadas del empleado "+(i+1)));
+                if(horasTrabajadas < 0) throw new Exception("El numero no puede ser negativo");
+
+                if(horasTrabajadas > 40) mensaje.append("Empleado ")
+                        .append(i+1).append(": ")
+                        .append(horasTrabajadas - 40)
+                        .append("hs\n");
+            }
+            JOptionPane.showMessageDialog(null, mensaje);
         }catch(Exception e){
             JOptionPane.showMessageDialog(
                     null,
